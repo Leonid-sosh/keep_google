@@ -23,13 +23,20 @@ header{
   outline: none;
 }
 
-.SideMenuSvg{
+.Header_svg{
   float: left;
   cursor: pointer;
   padding: 12px 3px 12px 12px;
   height: 20px;
   widht: 20px;
   margin: 3px 5px 5px 5px;
+  fill: #5f6368;
+  transition: 1s;
+}
+
+.Header_svg:hover{
+  fill: black;
+  transition: 1s;
 }
 
 img{
@@ -57,24 +64,41 @@ a{
   -webkit-font-smoothing: antialiased;
 }
 
-.search {
+.search_1{
   float: left;
   background: #f1f3f4;
+  width: 55%;
+  height: 40px;
+  vertical-align: center;
+  position: relative;
+  left: 5%;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.Search_svg{
+  fill: #5f6368;
+  float: left;
+  margin: 8px;
+}
+
+.Tool_bar{
+  float: left;
+  margin-left: 100px;
+}
+
+.search {
+  float: left;
+  background: transparent;
   border-radius: 8px;
   border: none;
   font: normal 16px Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   font-size: 13px;
   height: 38px;
   outline: none;
-  width: 50%;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  width: 90%;
   margin-left: 5px;
-  padding-left: 25px;
-  position: relative;
-  left: 5%;
-  vertical-align: middle;
-  margin-top: 6px;
+  vertical-align: top;
 }
 
 .nav {
@@ -240,9 +264,9 @@ a{
   width: 100%;
   text-decoration: none;
   /* плавный переход */
-  -webkit-transition: color .5s ease, padding .5s ease;
-  -moz-transition: color .5s ease, padding .5s ease;
-  transition: color .5s ease, padding .5s ease;
+  -webkit-transition: color .3s ease, padding .3s ease;
+  -moz-transition: color .3s ease, padding .3s ease;
+  transition: color .3s ease, padding .3s ease;
 }
 
 /**
