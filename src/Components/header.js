@@ -40,11 +40,8 @@ class Header extends React.Component{
                             <circle cx="12" cy="12" r="3.5"/>
                         </svg>
                     </div>
-
-
                 </header>
             </div>
-
         );
     }
 }

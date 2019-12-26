@@ -217,6 +217,13 @@ a{
   }
 }
 
+@media screen and (max-width: 865px) {
+  .Tool_bar{
+    display: none;
+  }
+
+}
+
 @media screen and (max-width: 200px) {
   html,
   body {
@@ -297,3 +304,39 @@ a{
   border-bottom: 1px solid #dadce0;
 }
 
+.Note_form{
+  min-height: 100px;
+  width: 50%;
+  background: #f1f3f4;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid #dadce0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.Note_title{
+   padding: 8px;
+   float: left;
+   text-align: left;
+   min-height: 35px;
+   width: 30%;
+   border-radius: 8px;
+   outline: none;
+   box-sizing: border-box;
+}
+
+.Note_text{
+  padding: 20px 8px 8px 8px;
+  float: left;
+  text-align: left;
+  min-height: 35px;
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  position: relative;
+}
