@@ -5,6 +5,7 @@ class Addnote extends React.Component{
     render() {
         return (
             <div className="Note_form">
+                <form>
                     <div contentEditable="true"
                          aria-multiline="true"
                          role="textbox"
@@ -22,6 +23,7 @@ class Addnote extends React.Component{
                          tabIndex="0"
                          aria-label="Введите заголовок">Заметка...
                     </div>
+                </form>
             </div>
         );
     }
