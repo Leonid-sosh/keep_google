@@ -23,6 +23,21 @@ header{
   outline: none;
 }
 
+.gb_uc1{
+  fill: #5f6368;
+  outline: none;
+  float: left;
+  font-size: 20px;
+  line-height: 24px;
+  position: relative;
+  top: -1.5px;
+  font-family: 'Product Sans',Arial,sans-serif;
+  color: #5f6368;
+  margin-top: 16px;
+}
+
+
+
 .Header_svg{
   float: left;
   cursor: pointer;
@@ -80,6 +95,12 @@ a{
   fill: #5f6368;
   float: left;
   margin: 8px;
+  transition: 0.5s;
+}
+
+.Search_svg:hover{
+  fill: black;
+  transition: 0.5s;
 }
 
 .Tool_bar{
@@ -96,9 +117,47 @@ a{
   font-size: 13px;
   height: 38px;
   outline: none;
-  width: 90%;
+  width: 88%;
   margin-left: 5px;
   vertical-align: top;
+}
+
+.new_note_title{
+  float: left;
+  background: transparent;
+  border-radius: 8px;
+  border: none;
+  font-size: 110%;
+  height: 38px;
+  outline: none;
+  margin-left: 5px;
+  vertical-align: top;
+  padding: 8px;
+  text-align: left;
+  min-height: 35px;
+  width: 30%;
+  box-sizing: border-box;
+}
+
+.new_note_text{
+  float: left;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 110%;
+  outline: none;
+  margin-left: 5px;
+  vertical-align: top;
+  padding: 8px;
+  text-align: left;
+  min-height: 35px;
+  height: auto;
+  width: 80%;
+  box-sizing: border-box;
+  margin-top: 15px;
+  color: black;
+  overflow: hidden;
+  resize: vertical;
+  white-space: nowrap;
 }
 
 .nav {
@@ -204,6 +263,25 @@ a{
   transform: translateX(200px);
 }
 
+.aaa{
+  text-decoration: none;
+  float: left;
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: gray;
+  width: 100%;
+  /* плавный переход */
+  -webkit-transition: color .3s ease, padding .3s ease;
+  -moz-transition: color .3s ease, padding .3s ease;
+  transition: color .3s ease, padding .3s ease;
+  opacity: 1;
+  padding-right: 15px;
+  vertical-align: top;
+}
+
 /**
  * позаботьтимся о средних и маленьких экранах
  * мобильных устройств
@@ -304,6 +382,10 @@ a{
   border-bottom: 1px solid #dadce0;
 }
 
+.nav > ul > li:last-child {
+  border-top: 1px solid #dadce0;
+}
+
 .Note_form{
   min-height: 100px;
   width: 50%;
@@ -340,3 +422,84 @@ a{
   box-sizing: border-box;
   position: relative;
 }
+
+
+.Note_Item{
+  min-height: 100px;
+  width: 50%;
+  background: #f1f3f4;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #dadce0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 20px auto 10px;
+}
+
+.title{
+  text-align: left;
+  padding-left: 8px;
+}
+
+.text{
+  text-align: left;
+  padding-left: 8px;
+}
+
+.add_Note{
+  color: #5f6368;
+  width: 150px;
+  float: right;
+  text-align: right;
+  transition: 0.5s;
+  margin-left: 90px;
+}
+
+.add_Note1{
+  color: #5f6368;
+  width: 150px;
+  float: right;
+  text-align: right;
+  transition: 0.5s;
+  margin-left: 90px;
+  position: relative;
+  left: 155px;
+}
+
+p{
+  width: 90%;
+  cursor: pointer;
+}
+
+.add_Note:hover{
+  color: black;
+  transition: 0.5s;
+}
+
+.add_Note1:hover{
+  color: black;
+  transition: 0.5s;
+}
+
+.search_btn{
+  cursor: pointer;
+}
+
+.clean{
+  cursor: pointer;
+}
+
+textarea {
+  height: auto;
+  max-height: 300px;
+  cursor: text;
+  font: 400 13.3333px Arial;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
