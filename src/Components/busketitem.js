@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 class BusketItem extends React.Component{
 
-
-
     render() {
         const {id, title, text} = this.props.removed_notes;
         return (
@@ -15,7 +13,7 @@ class BusketItem extends React.Component{
 
                     <div className="add_Note"
                          role="button"
-                         onClick={this.props.remove.bind(this, id, title, text)}
+                         onClick={this.props.remove.bind(this, id)}
                     >
                         <p>Удалить</p>
                     </div>

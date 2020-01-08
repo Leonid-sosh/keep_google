@@ -5,6 +5,7 @@ import Notes from "./Components/notes";
 import Filter from "./Components/filter";
 import SideMenu from "./Components/SideMenu";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Busket from "./Components/Pages/busket";
 import Busketpage from "./Components/Pages/busketpage";
 
 
@@ -27,8 +28,8 @@ class App extends React.Component{
     };
 
     componentWillMount() {
-        localStorage.getItem('NoteList') && this.setState({
-            notes: JSON.parse(localStorage.getItem('NoteList'))
+        localStorage.getItem('My_notes_list') && this.setState({
+            notes: JSON.parse(localStorage.getItem('My_notes_list'))
         });
 
         localStorage.getItem('Dell_note_list') && this.setState({
@@ -37,13 +38,13 @@ class App extends React.Component{
     }
 
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('NoteList', JSON.stringify(nextState.notes))
-        localStorage.setItem('Dell_note_list', JSON.stringify(nextState.removed_notes));
+        localStorage.setItem('My_notes_list', JSON.stringify(nextState.notes))
+        localStorage.setItem('Removed_Notes', JSON.stringify(nextState.removed_notes));
     }
 
 
     delNote = (id, title, text) => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
+        if (localStorage.getItem('Filtered_notes') !== null) {
             alert ("Сначала отмените фильтр!");
         }
         else {
@@ -61,13 +62,13 @@ class App extends React.Component{
                 title: title,
                 text: text,
             };
-            this.setState({removed_notes: [...this.state.removed_notes, newDellNote]}, () => localStorage.setItem('Dell_note_list', JSON.stringify(this.state.removed_notes)));
+            this.setState({removed_notes: [...this.state.removed_notes, newDellNote]}, () => localStorage.setItem('Removed_Notes', JSON.stringify(this.state.removed_notes)));
         }
     };
 
 
     addNote = (title, text) => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
+        if (localStorage.getItem('Filtered_notes') !== null) {
             alert ("Сначала отмените фильтр!");
         }
         else {
@@ -83,26 +84,26 @@ class App extends React.Component{
                 title: title,
                 text: text,
             };
-            this.setState({notes: [...this.state.notes, newNote]}, () => localStorage.setItem('NoteList', JSON.stringify(this.state.notes)));
+            this.setState({notes: [...this.state.notes, newNote]}, () => localStorage.setItem('My_notes_list', JSON.stringify(this.state.notes)));
         }
     };
 
     filter = (titletext) => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
+        if (localStorage.getItem('Filtered_notes') !== null) {
             alert ("Сначала отмените фильтр!");
         }
 
         else {
-            localStorage.setItem('FilteredNotes', JSON.stringify(this.state.notes));
+            localStorage.setItem('Filtered_notes', JSON.stringify(this.state.notes));
             this.setState({notes: [...this.state.notes.filter(notes => notes.title.toLowerCase().indexOf(titletext.toLowerCase()) !== -1 )]});
         }
 
-    }
+    };
 
     clear_filter = () => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
-            this.setState({ notes: JSON.parse(localStorage.getItem('FilteredNotes')) });
-            localStorage.removeItem("FilteredNotes");
+        if (localStorage.getItem('Filtered_notes') !== null) {
+            this.setState({ notes: JSON.parse(localStorage.getItem('Filtered_notes')) });
+            localStorage.removeItem("Filtered_notes");
         }
     };
 

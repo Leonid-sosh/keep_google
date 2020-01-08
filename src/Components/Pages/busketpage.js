@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
 import Busket from "./busket";
+import React, {Component} from 'react';
 
 class Busketpage extends Component {
     state = {
@@ -14,26 +14,26 @@ class Busketpage extends Component {
                 title: 'Удаленная заметка 222',
                 text: 'Текст 2',
             },
-        ]
+        ],
     };
 
     componentWillMount() {
-        localStorage.getItem('NoteList') && this.setState({
-            notes: JSON.parse(localStorage.getItem('NoteList'))
+        localStorage.getItem('My_notes_list') && this.setState({
+            notes: JSON.parse(localStorage.getItem('My_notes_list'))
         });
 
-        localStorage.getItem('Dell_note_list') && this.setState({
-            removed_notes: JSON.parse(localStorage.getItem('Dell_note_list'))
+        localStorage.getItem('Removed_Notes') && this.setState({
+            removed_notes: JSON.parse(localStorage.getItem('Removed_Notes'))
         })
     }
 
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('NoteList', JSON.stringify(nextState.notes))
-        localStorage.setItem('Dell_note_list', JSON.stringify(nextState.removed_notes));
+        localStorage.setItem('My_notes_list', JSON.stringify(nextState.notes))
+        localStorage.setItem('Removed_Notes', JSON.stringify(nextState.removed_notes));
     }
 
     remove = (id, title, text) => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
+        if (localStorage.getItem('Filtered_notes') !== null) {
             alert ("Сначала отмените фильтр!");
         }
         else{
@@ -42,7 +42,7 @@ class Busketpage extends Component {
     };
 
     undo = (id, title, text) => {
-        if (localStorage.getItem('FilteredNotes') !== null) {
+        if (localStorage.getItem('Filtered_notes') !== null) {
             alert ("Сначала отмените фильтр!");
         }
         else {
@@ -60,7 +60,7 @@ class Busketpage extends Component {
                 title: title,
                 text: text,
             };
-            this.setState({notes: [...this.state.notes, undo_note]}, () => localStorage.setItem('NoteList', JSON.stringify(this.state.notes)));
+            this.setState({notes: [...this.state.notes, undo_note]}, () => localStorage.setItem('My_notes_list', JSON.stringify(this.state.notes)));
         }
     };
 
