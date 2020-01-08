@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 class BusketItem extends React.Component{
+
+
+
     render() {
         const {id, title, text} = this.props.removed_notes;
         return (
@@ -11,12 +14,16 @@ class BusketItem extends React.Component{
                     <p className="text">{text}</p>
 
                     <div className="add_Note"
-                         role="button">
+                         role="button"
+                         onClick={this.props.remove.bind(this, id, title, text)}
+                    >
                         <p>Удалить</p>
                     </div>
 
                     <div className="add_Note1"
-                         role="button">
+                         role="button"
+                         onClick={this.props.undo.bind(this, id, title, text)}
+                    >
                         <p>Восстановить</p>
                     </div>
             </div>

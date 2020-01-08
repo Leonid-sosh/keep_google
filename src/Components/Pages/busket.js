@@ -8,8 +8,9 @@ class Busket extends React.Component{
             (removed_notes) => (
                 <BucketItem key={removed_notes.id}
                           removed_notes={removed_notes}
+                          remove={this.props.remove}
+                          undo={this.props.undo}
                 />
-
             ));
     }
 }

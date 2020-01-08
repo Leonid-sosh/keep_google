@@ -13,8 +13,8 @@ class NoteItem extends React.Component{
 
                 <div className="add_Note"
                      role="button"
-                     onClick={this.props.delNote.bind(this, id)}>
-                    <p>Удалить</p>
+                     onClick={this.props.delNote.bind(this, id, title, text)}>
+                    <p>В корзину</p>
                 </div>
 
             </div>

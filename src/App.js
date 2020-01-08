@@ -5,11 +5,11 @@ import Notes from "./Components/notes";
 import Filter from "./Components/filter";
 import SideMenu from "./Components/SideMenu";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Busket from "./Components/Pages/busket";
-import BuscketItem from "./Components/busketitem";
 import Busketpage from "./Components/Pages/busketpage";
 
+
 class App extends React.Component{
+
     state = {
         notes:[
             {
@@ -24,57 +24,87 @@ class App extends React.Component{
             },
         ],
 
-        removed_notes:[
-            {
-                id: 5,
-                title: 'Удаленная заметка 1',
-                text: 'Текст 1',
-            },
-            {
-                id: 6,
-                title: 'Удаленная заметка 2',
-                text: 'Текст 2',
-            },
-        ]
     };
 
     componentWillMount() {
-        localStorage.getItem('Note_list') && this.setState({
-            notes: JSON.parse(localStorage.getItem('Note_list'))
+        localStorage.getItem('NoteList') && this.setState({
+            notes: JSON.parse(localStorage.getItem('NoteList'))
+        });
+
+        localStorage.getItem('Dell_note_list') && this.setState({
+            removed_notes: JSON.parse(localStorage.getItem('Dell_note_list'))
         })
     }
 
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('Note_list', JSON.stringify(nextState.notes));
+        localStorage.setItem('NoteList', JSON.stringify(nextState.notes))
+        localStorage.setItem('Dell_note_list', JSON.stringify(nextState.removed_notes));
     }
 
-    delNote = (id) => {
-        this.setState({notes: [...this.state.notes.filter(notes => notes.id != id)]});
-    }
+
+    delNote = (id, title, text) => {
+        if (localStorage.getItem('FilteredNotes') !== null) {
+            alert ("Сначала отмените фильтр!");
+        }
+        else {
+            this.setState({notes: [...this.state.notes.filter(notes => notes.id != id)]});
+
+            const len1 = this.state.removed_notes.length;
+            let max_id1 = 0;
+            for (let i = 0; i < len1; i++) {
+                if (this.state.removed_notes[i].id > max_id1) {
+                    max_id1 = this.state.removed_notes[i].id;
+                }
+            }
+            const newDellNote = {
+                id: max_id1 + 1,
+                title: title,
+                text: text,
+            };
+            this.setState({removed_notes: [...this.state.removed_notes, newDellNote]}, () => localStorage.setItem('Dell_note_list', JSON.stringify(this.state.removed_notes)));
+        }
+    };
+
 
     addNote = (title, text) => {
-        const len = this.state.notes.length;
-        let max_id = 0;
-        for (let i = 0; i < len; i++) {
-            if (this.state.notes[i].id > max_id) {
-                max_id = this.state.notes[i].id;
-            }
+        if (localStorage.getItem('FilteredNotes') !== null) {
+            alert ("Сначала отмените фильтр!");
         }
-        const newNote = {
-            id: max_id + 1,
-            title: title,
-            text: text,
-        };
-        this.setState({notes: [...this.state.notes, newNote]}, () => localStorage.setItem('Note_list', JSON.stringify(this.state.notes)));
+        else {
+            const len = this.state.notes.length;
+            let max_id = 0;
+            for (let i = 0; i < len; i++) {
+                if (this.state.notes[i].id > max_id) {
+                    max_id = this.state.notes[i].id;
+                }
+            }
+            const newNote = {
+                id: max_id + 1,
+                title: title,
+                text: text,
+            };
+            this.setState({notes: [...this.state.notes, newNote]}, () => localStorage.setItem('NoteList', JSON.stringify(this.state.notes)));
+        }
     };
 
     filter = (titletext) => {
-        this.setState({notes: [...this.state.notes.filter(notes => notes.title.toLowerCase().indexOf(titletext.toLowerCase()) !== -1 )]});
+        if (localStorage.getItem('FilteredNotes') !== null) {
+            alert ("Сначала отмените фильтр!");
+        }
+
+        else {
+            localStorage.setItem('FilteredNotes', JSON.stringify(this.state.notes));
+            this.setState({notes: [...this.state.notes.filter(notes => notes.title.toLowerCase().indexOf(titletext.toLowerCase()) !== -1 )]});
+        }
+
     }
 
     clear_filter = () => {
-
-    }
+        if (localStorage.getItem('FilteredNotes') !== null) {
+            this.setState({ notes: JSON.parse(localStorage.getItem('FilteredNotes')) });
+            localStorage.removeItem("FilteredNotes");
+        }
+    };
 
   render(){
     return (
@@ -97,7 +127,7 @@ class App extends React.Component{
                 </div>
                 <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"/>
                 <a><span className="keep">Keep</span></a>
-                <Filter filter={this.filter}/>
+                <Filter clear_filter={this.clear_filter} filter={this.filter}/>
                 <div className="Tool_bar">
                     <svg className="Header_svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path d="M13 9v2h7V4h-2v2.74C16.53 5.07 14.4 4 12 4c-2.21 0-4.21.9-5.66 2.34S4 9.79 4 12c0 4.42 3.58 8 8 8 2.21 0 4.21-.9 5.66-2.34l-1.42-1.42A5.98 5.98 0 0 1 12 18c-3.31 0-6-2.69-6-6 0-1.65.67-3.15 1.76-4.24A5.98 5.98 0 0 1 12 6a6.01 6.01 0 0 1 5.19 3H13z"/>
@@ -121,7 +151,6 @@ class App extends React.Component{
             )}/>
             <Route path='/buscketpage'
                    component={Busketpage}/>
-
         </div>
         </Router>
      );

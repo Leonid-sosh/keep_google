@@ -10,6 +10,7 @@ export class Filter extends Component {
 
     onClick = (e) => {
         e.preventDefault();
+        this.props.clear_filter();
         this.setState({note_title: ''});
     };
 
